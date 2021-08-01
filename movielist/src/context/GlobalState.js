@@ -39,6 +39,16 @@ export const GlobalProvider = (props) => {
     dispatch({ type: "ADD_MOVIE_TO_WATCHED", payload: movie })
   }
 
+  //actions --> move back to watchlist
+  const moveToWatchlist = (movie) => {
+    dispatch({ type: "MOVE_TO_WATCHLIST", payload: movie });
+  };
+
+  //actions --> remove from watched
+  const removeFromWatched = (id) => {
+    dispatch({ type: "REMOVE_FROM_WATCHED", payload: id })
+  }
+
   return (
     <GlobalContext.Provider
       value={{
@@ -46,7 +56,9 @@ export const GlobalProvider = (props) => {
         watched: state.watched,     //state
         addMovieToWatchlist,        //action (influences state)
         removeMovieFromWatchlist,    //action
-        addMovieToWatched            //action
+        addMovieToWatched,            //action
+        moveToWatchlist,              //action
+        removeFromWatched             //action
       }}
     >
       {props.children}
